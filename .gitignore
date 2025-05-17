@@ -1,0 +1,43 @@
+# --- Frontend (Node.js) ---
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env
+
+
+# --- Backend/Express (Node.js) ---
+backend/express/node_modules/
+backend/express/dist/
+backend/express/build/
+backend/express/.env
+
+# --- Backend/Fiber (Go) ---
+# Go binaries & build artifacts
+backend/fiber/*.exe
+backend/fiber/*.exe~
+backend/fiber/*.dll
+backend/fiber/*.so
+backend/fiber/*.dylib
+backend/fiber/*.test
+backend/fiber/*.out
+
+# Go cache/build folders (if any)
+backend/fiber/build/
+backend/fiber/bin/
+backend/fiber/dist/
+
+# Go vendor folder (optional)
+backend/fiber/vendor/
+
+# Go environment
+backend/fiber/.env
+
+# Go workspaces (optional)
+backend/fiber/go.work
+backend/fiber/go.work.sum
+
+# IDEs/editors (optional but useful)
+.idea/
+.vscode/
+*.swp
+*.swo
