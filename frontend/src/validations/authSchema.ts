@@ -5,8 +5,11 @@ const signupSchema = zod.object({
     .string()
     .trim()
     .min(5, { message: "Username must be at least 5 characters long" })
-    .max(20, { message: "Username must not exceed 20 characters" })
-    .regex(/^[a-zA-Z]+$/, { message: "Username can only contain letters" }),
+    .max(30, { message: "Username must not exceed 20 characters" })
+    .regex(/^[A-Za-z]+(?: [A-Za-z]+)*$/, {
+      message:
+        "Username must contain only letters and single spaces between words",
+    }),
   email: zod
     .string()
     .trim()
