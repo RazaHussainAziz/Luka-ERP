@@ -30,7 +30,7 @@ function Login() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
-      });
+      }); 
       const response = await request.json();
       if (!response.success) return toast.error("login failed");
       //storing data
