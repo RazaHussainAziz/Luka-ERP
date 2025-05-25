@@ -1,5 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { Home, Signup, Login, Dashboard } from "./app-components";
+import {
+  Home,
+  Signup,
+  Login,
+  Dashboard,
+  Inventory,
+  DashboardUI,
+} from "./app-components";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +24,16 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    children: [
+      {
+        index: true,
+        element: <DashboardUI />,
+      },
+      {
+        path: "inventory",
+        element: <Inventory />,
+      },
+    ],
   },
 ]);
 function App() {

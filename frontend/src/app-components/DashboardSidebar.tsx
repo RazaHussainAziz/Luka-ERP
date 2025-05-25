@@ -11,6 +11,7 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -35,8 +36,8 @@ const Routes = [
     icon: <AnalyticsOutline />,
   },
   {
-    title: "Inventry",
-    url: "/dashboard/inventry",
+    title: "Inventory",
+    url: "/dashboard/inventory",
     icon: <SharpInventory />,
   },
   {
@@ -55,6 +56,7 @@ function DashboardSidebar() {
               <h1 className="text-xl flex items-center rounded-md gap-4 p-2 font-bold text-white hover:bg-zinc-800">
                 <Company /> Luka Inc.
               </h1>
+              <SidebarGroupLabel>Applications</SidebarGroupLabel>
               {Routes.map((route) => (
                 <SidebarMenuItem key={route.title}>
                   <SidebarMenuButton asChild className="hover:bg-zinc-700">
