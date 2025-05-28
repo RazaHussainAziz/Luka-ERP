@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import userModel from '../models/userModels.js';
+import { userModels } from '../models/userModels.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -22,7 +22,7 @@ const signup = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await userModel.createUser(username, email, hashedPassword);
+    const newUser = await userModels.createUser(username, email, hashedPassword);
 
     res.status(201).json({ message: 'User created', user: newUser });
   } catch (err) {
@@ -34,7 +34,7 @@ const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await userModel.findUserByEmail(email);
+    const user = await userModels.findUserByEmail(email);
     if (!user) return res.status(400).json({ message: 'Invalid credentials' });
 
     const isMatch = await bcrypt.compare(password, user.password);
