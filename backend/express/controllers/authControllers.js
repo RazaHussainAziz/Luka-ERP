@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { userModels } from '../models/userModels.js';
+import userModels from '../models/userModels.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -16,7 +16,7 @@ const signup = async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
-    const existingUser = await userModel.findUserByEmail(email);
+    const existingUser = await userModels.findUserByEmail(email);
     if (existingUser) {
       return res.status(400).json({ message: 'Email already in use' });
     }
