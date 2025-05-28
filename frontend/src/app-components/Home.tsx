@@ -19,7 +19,7 @@ function Home() {
         className=" max-w-[1300px] mx-auto fixed top-0  left-0  right-0 z-50 bg-background/50 
       backdrop-blur-md border-b border-white/10 py-5 px-3  rounded-xl flex items-center justify-between"
       >
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center  space-x-10">
           <h1 className="text-2xl font-bold flex items-center gap-3">
             <Company /> Luka Inc.
           </h1>

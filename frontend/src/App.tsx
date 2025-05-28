@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import {
   Home,
-  Signup,
-  Login,
+  AuthPage,
   Dashboard,
   Inventory,
   DashboardUI,
+  Employee,
 } from "./app-components";
 
 const router = createBrowserRouter([
@@ -14,12 +14,8 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/signup",
-    element: <Signup />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
+    path: "/auth-page",
+    element: <AuthPage />,
   },
   {
     path: "/dashboard",
@@ -28,6 +24,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardUI />,
+      },
+      {
+        path: "employee",
+        element: <Employee />,
       },
       {
         path: "inventory",
