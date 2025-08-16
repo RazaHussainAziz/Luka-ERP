@@ -1,19 +1,46 @@
 import pool from '../config/db.js';
 
 const createUser = async (username, email, hashedPassword) => {
-    const result = await pool.query(
-        'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING username,email',
-        [username, email, hashedPassword]
-    );
-    return result.rows[0];
+    try {
+        const result = await pool.query(
+            'INSERT INTO "user" (username, email, password,pro,created_at) VALUES ($1, $2, $3,$4, $5) RETURNING id,username,email,created_at',
+            [username, email, hashedPassword, false, new Date()]
+        );
+
+        return result.rows[0];
+    } catch (error) {
+        console.log(error);
+    }
 };
 
-const findUserByEmail = async (email, userType) => {
-    const result = await pool.query(
-        `SELECT id,username,email,password FROM ${userType} WHERE email = $1`,
+const emailExists = async (email) => {
+    const { rows } = await pool.query(
+        `SELECT EXISTS (SELECT 1 FROM "user" WHERE email = $1)`,
         [email]
     );
-    return result.rows[0];
+    return rows[0].exists; // true or false
 };
 
-export { createUser, findUserByEmail };
+const findUserByEmail = async (email) => {
+    const { rows } = await pool.query(
+        `SELECT *
+       FROM "user"
+      WHERE email = $1
+      LIMIT 1`,
+        [email]
+    );
+    return rows[0]; // true or false
+};
+
+const findEmployeeByEmail = async (email) => {
+    const { rows } = await pool.query(
+        `SELECT *
+       FROM employee
+      WHERE email = $1
+      LIMIT 1`,
+        [email]
+    );
+    return rows[0]; // true or false
+};
+
+export { createUser, emailExists, findUserByEmail, findEmployeeByEmail };

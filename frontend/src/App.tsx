@@ -25,12 +25,24 @@ const router = createBrowserRouter([
         index: true,
         element: <DashboardUI />,
       },
+    ],
+  },
+  {
+    path: "/employee",
+    element: <Dashboard />,
+    children: [
       {
-        path: "employee",
+        index: true,
         element: <Employee />,
       },
+    ],
+  },
+  {
+    path: "/inventory",
+    element: <Dashboard />,
+    children: [
       {
-        path: "inventory",
+        index: true,
         element: <Inventory />,
       },
     ],

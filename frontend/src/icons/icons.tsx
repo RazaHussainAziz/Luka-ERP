@@ -169,7 +169,7 @@ export function Company(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function InvoiceOutline(props: SVGProps<SVGSVGElement>) {
+export function BaselineReceipt(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -178,16 +178,14 @@ export function InvoiceOutline(props: SVGProps<SVGSVGElement>) {
       height="1em"
       {...props}
     >
-      <g fill="none" stroke="currentColor">
-        <rect width="11" height="15" x="6.5" y="4.5" rx="1.5"></rect>
-        <path strokeLinecap="round" d="m10 12l4-4"></path>
-        <circle cx="10.5" cy="8.5" r=".5"></circle>
-        <circle cx="13.5" cy="11.5" r=".5"></circle>
-        <path strokeLinecap="round" d="M9 15h6m-6 2h6"></path>
-      </g>
+      <path
+        fill="currentColor"
+        d="M18 17H6v-2h12zm0-4H6v-2h12zm0-4H6V7h12zM3 22l1.5-1.5L6 22l1.5-1.5L9 22l1.5-1.5L12 22l1.5-1.5L15 22l1.5-1.5L18 22l1.5-1.5L21 22V2l-1.5 1.5L18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2L7.5 3.5L6 2L4.5 3.5L3 2z"
+      ></path>
     </svg>
-  );
+  )
 }
+
 
 export function Github(props: SVGProps<SVGSVGElement>) {
   return (
@@ -252,6 +250,23 @@ export function UserAvatarOutline(props: SVGProps<SVGSVGElement>) {
       <path
         fill="currentColor"
         d="M10 8c1.7 0 3.06-1.35 3.06-3S11.7 2 10 2S6.94 3.35 6.94 5S8.3 8 10 8m0 2c-2.8 0-5.06-2.24-5.06-5S7.2 0 10 0s5.06 2.24 5.06 5s-2.26 5-5.06 5m-7 8h14v-1.33c0-1.75-2.31-3.56-7-3.56s-7 1.81-7 3.56zm7-6.89c6.66 0 9 3.33 9 5.56V20H1v-3.33c0-2.23 2.34-5.56 9-5.56"
+      ></path>
+    </svg>
+  );
+}
+
+export function Dashboard(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z"
       ></path>
     </svg>
   );

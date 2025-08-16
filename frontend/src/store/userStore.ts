@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import type { userStore }  from "@/Types/userType";
-const useUserStore = create<userStore>((set) => ({
+
+const useUserStore = create((set) => ({
   user: {
     id: "",
     username: "",
@@ -8,8 +8,8 @@ const useUserStore = create<userStore>((set) => ({
     isPro: false,
     authFlag: false,
   },
-  writeUser: (user) => set({ user }),
+  addUser: (user) => set({ user }),
   clearUser: () => set({ user: null }),
 }));
 
-export default useUserStore
+export default useUserStore;

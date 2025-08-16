@@ -1,10 +1,10 @@
-import { LayoutDashboard } from "lucide-react";
 import {
   AnalyticsOutline,
   Company,
-  InvoiceOutline,
+  BaselineReceipt,
   PersonWorker,
   SharpInventory,
+  Dashboard,
 } from "@/icons/icons";
 import {
   Sidebar,
@@ -13,7 +13,6 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
@@ -23,30 +22,31 @@ const Routes = [
   {
     title: "Dashboard",
     url: "/dashboard",
-    icon: <LayoutDashboard />,
+    icon: <Dashboard />,
   },
   {
     title: "Employee",
-    url: "/dashboard/employee",
+    url: "/employee",
     icon: <PersonWorker />,
   },
   {
     title: "Analytics",
-    url: "/dashboard/analytics",
+    url: "/analytics",
     icon: <AnalyticsOutline />,
   },
   {
     title: "Inventory",
-    url: "/dashboard/inventory",
+    url: "/inventory",
     icon: <SharpInventory />,
   },
   {
     title: "Invoices",
-    url: "/dashboard/invoices",
-    icon: <InvoiceOutline />,
+    url: "/invoices",
+    icon: <BaselineReceipt />,
   },
 ];
 function DashboardSidebar() {
+
   return (
     <Sidebar>
       <SidebarContent className="bg-zinc-900">
@@ -59,12 +59,17 @@ function DashboardSidebar() {
               <SidebarGroupLabel>Applications</SidebarGroupLabel>
               {Routes.map((route) => (
                 <SidebarMenuItem key={route.title}>
-                  <SidebarMenuButton asChild className="hover:bg-zinc-700">
-                    <NavLink to={route.url}>
-                      {route.icon}
-                      <span className="text-white">{route.title}</span>
-                    </NavLink>
-                  </SidebarMenuButton>
+                  <NavLink
+                    to={route.url}
+                    className={({ isActive }) =>
+                      ` flex items-center gap-2 text-[16px] text-white hover:bg-zinc-300/10
+                    p-2 rounded-sm  ${isActive ? " bg-zinc-700/60" : ""}`
+                    }
+                  >
+                    {route.icon}
+
+                    {route.title}
+                  </NavLink>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>

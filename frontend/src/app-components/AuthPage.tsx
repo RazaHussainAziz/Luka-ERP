@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { User, Mail, Eye, EyeOff, Lock } from "lucide-react";
 
 import { signupSchema, loginSchema } from "@/validations/authSchema";
-import type { User as Usertype } from "@/Types/userType";
+
 import { useUserStore } from "@/store";
 import { toast } from "sonner";
 import { ZodError } from "zod";
@@ -24,7 +24,7 @@ function AuthPage() {
     email: "",
     password: "",
   });
-  const { writeUser } = useUserStore();
+  const { addUser } = useUserStore();
   const [showPassword, setShowPassword] = React.useState(false);
   const navigate = useNavigate();
   const handleSignUp = async (e: FormEvent) => {
@@ -32,30 +32,29 @@ function AuthPage() {
       e.preventDefault();
       //check for zod validation
       signupSchema.parse(signUpData);
-      console.log(signUpData);
+    
       //making post fetch request
-      console.log(import.meta.env.VITE_BACKEND_SIGNUP_URL);
       const request = await fetch(import.meta.env.VITE_BACKEND_SIGNUP_URL, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(signUpData),
       });
-      console.log(request);
       const response = await request.json();
-      console.log(response);
-      if (!response.success) return toast.error("signup failed");
+    
+      if (!response.success) return toast.error(response?.error);
       //storing data
-      writeUser({
+      addUser({
         id: response.id,
-        username: response.username,
+        username: response.username, 
         email: response.email,
         isPro: response.pro,
         authFlag: true,
-      } as Usertype);
+      });
       //redirection code needed
-      toast.success(`Welcome ${response.username}`);
+      toast.success(`Welcome ${response?.response?.username}`);
       navigate("/dashboard");
     } catch (error) {
       if (error instanceof ZodError)
@@ -70,26 +69,30 @@ function AuthPage() {
       e.preventDefault();
       //check for zod validation
       loginSchema.parse(signInData);
+
       //making post fetch request
       const request = await fetch(import.meta.env.VITE_BACKEND_LOGIN_URL, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(signInData),
       });
       const response = await request.json();
+
       if (!response.success) return toast.error("login failed");
       //storing data
-      writeUser({
-        id: response.id,
-        username: response.username,
-        email: response.email,
-        isPro: response.pro,
+      addUser({
+        id: response.response.id,
+        username: response.response.username,
+        email: response.response.email,
+        isPro: response.response.pro,
         authFlag: true,
-      } as Usertype);
-      //redirection code needed
-      return toast.success(`Welcome ${response.username}`);
+      });
+
+      toast.success(`Welcome ${response.response.username}`);
+      navigate("/dashboard");
     } catch (error) {
       if (error instanceof ZodError)
         return toast.error(error.errors[0].message);
@@ -150,7 +153,7 @@ function AuthPage() {
                         }))
                       }
                       required={true}
-                      className="bg-transparent border-0 placeholder:text-zinc-500 focus-visible:ring-0 p-0 pr-2"
+                      className="bg-transparent border-none placeholder:text-zinc-500 focus-visible:ring-0 p-0 pr-2"
                       placeholder="@username"
                     />
                   </div>
@@ -174,7 +177,7 @@ function AuthPage() {
                         }))
                       }
                       required={true}
-                      className="bg-transparent border-0 placeholder:text-zinc-500 focus-visible:ring-0 p-0 pr-2"
+                      className="bg-transparent border-none placeholder:text-zinc-500 focus-visible:ring-0 p-0 pr-2"
                       placeholder="example@gmail.com"
                     />
                   </div>
@@ -199,7 +202,7 @@ function AuthPage() {
                           password: e.target.value,
                         }))
                       }
-                      className="bg-transparent border-0 focus-visible:ring-0 p-0"
+                      className="bg-transparent border-none focus-visible:ring-0 p-0"
                     />
                     {showPassword ? (
                       <EyeOff
@@ -245,7 +248,7 @@ function AuthPage() {
                         }))
                       }
                       required={true}
-                      className="bg-transparent border-0 placeholder:text-zinc-500 focus-visible:ring-0 p-0 pr-2"
+                      className="bg-transparent border-none placeholder:text-zinc-500 focus-visible:ring-0 p-0 pr-2"
                       placeholder="example@gmail.com"
                     />
                   </div>
@@ -270,7 +273,7 @@ function AuthPage() {
                           password: e.target.value,
                         }))
                       }
-                      className="bg-transparent border-0 focus-visible:ring-0 p-0"
+                      className="bg-transparent border-none focus-visible:ring-0 p-0"
                     />
                     {showPassword ? (
                       <EyeOff

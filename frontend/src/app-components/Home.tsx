@@ -6,9 +6,10 @@ import {
   BoxClosed,
   Company,
   Github,
-  InvoiceOutline,
+  BaselineReceipt,
   PersonWorker,
 } from "@/icons/icons";
+
 import MouseEffect from "./MouseEffect";
 import { Separator } from "@/components/ui/separator";
 function Home() {
@@ -113,7 +114,7 @@ function Home() {
           </div>
           <div className="bg-zinc-900 p-8 outline-1 flex flex-col outline-muted-foreground/50 rounded-md">
             <div className="flex items-center gap-3">
-              <InvoiceOutline
+              <BaselineReceipt
                 className="text-white"
                 style={{ width: "35px", height: "35px" }}
               />{" "}
@@ -143,7 +144,7 @@ function Home() {
         orientation="horizontal"
         className=" border-[1px] border-zinc-800/30"
       />
-      <section className="">
+      <section>
         <div className="container flex flex-col items-center gap-4 py-24 text-center md:py-32">
           <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">
             Ready to revolutionize your business?
